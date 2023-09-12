@@ -125,7 +125,7 @@ aws ec2 authorize-security-group-ingress \
 aws ec2 create-instance-connect-endpoint --subnet-id subnet-0123456789example --security-group-ids sg-0b67d0a6bexample1
 ```
 
-## Connect to instance 
+## Connect to Linux instance using SSH
 
 If you have all configuration right from above, you can use the below command to connect to ec2 instance using instance connect endpoint. 
 
@@ -133,6 +133,10 @@ If you have all configuration right from above, you can use the below command to
 ssh -i my-key-pair.pem ec2-user@i-0123456789example \
     -o ProxyCommand='aws ec2-instance-connect open-tunnel --instance-id i-0123456789example'
 ```
+
+## Connect to Windows instance using RDP
+
+Follow the instruction given [here](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connect-using-eice.html#eic-connect-using-rdp)
 
 ## Conclusion
 
