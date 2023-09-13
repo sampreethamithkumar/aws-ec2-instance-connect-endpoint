@@ -2,7 +2,7 @@
 
 ## Overview
 
-Imagine trying to connect to an Amazon Elastic Compute Cloud (Amazon EC2) instance within your Amazon Virtual Private Cloud (Amazon VPC) over the Internet. Typically, you’d first have to connect to a bastion host with a public IP address that your administrator set up over an Internet Gateway (IGW) in your VPC, and then use port forwarding to reach your destination.
+Imagine trying to connect to an Amazon Elastic Compute Cloud (Amazon EC2) instance within your Amazon Virtual Private Cloud (Amazon VPC) over the Internet. Typically, you’d first have to connect to a bastion host with a public IP address that your administrator set up over an Internet Gateway (IGW) in your VPC.
 
 Prior to the launch of Amazon EC2 Instance Connect Endpoints (EIC Endpoints), AWS offered two key services to help manage access from public address space into a VPC more carefully:
 
@@ -104,13 +104,7 @@ aws ec2 authorize-security-group-ingress \
     --cidr 0.0.0.0/0
 ```
 
-3. Add Outbound rule to security group created above
-
-```bash
-aws ec2 authorize-security-group-egress --group-id sg-0b67d0a6bexample1 --ip-permissions IpProtocol=tcp,FromPort=22,ToPort=22,UserIdGroupPairs='[{GroupId=sg-0bd67e12example2}]'
-```
-
-4. Add Inbound security group rule to ec2 instance security group
+3. Add Inbound security group rule to ec2 instance security group
 
 ```bash
 aws ec2 authorize-security-group-ingress \
@@ -120,7 +114,7 @@ aws ec2 authorize-security-group-ingress \
     --source-group sg-0b67d0a6bexample1
 ```
 
-5. Create an ec2 instance connect endpoint
+4. Create an ec2 instance connect endpoint
 ```bash
 aws ec2 create-instance-connect-endpoint --subnet-id subnet-0123456789example --security-group-ids sg-0b67d0a6bexample1
 ```
