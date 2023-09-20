@@ -98,7 +98,7 @@ aws ec2 create-security-group --description "endpoint security group" --group-na
 
 ```bash
 aws ec2 authorize-security-group-ingress \
-    --group-id sg-0b67d0a6bexample1 \
+    --group-id sg-0939c7eafc8d6a45f \
     --protocol tcp \
     --port 22 \
     --cidr 0.0.0.0/0
@@ -108,15 +108,15 @@ aws ec2 authorize-security-group-ingress \
 
 ```bash
 aws ec2 authorize-security-group-ingress \
-    --group-id sg-0bd67e12example2 \
+    --group-id sg-063d96c66c7d718e7 \
     --protocol tcp \
     --port 22 \
-    --source-group sg-0b67d0a6bexample1
+    --source-group sg-0939c7eafc8d6a45f
 ```
 
 4. Create an ec2 instance connect endpoint
 ```bash
-aws ec2 create-instance-connect-endpoint --subnet-id subnet-0123456789example --security-group-ids sg-0b67d0a6bexample1
+aws ec2 create-instance-connect-endpoint --subnet-id subnet-0fca5faec4293a1d2 --security-group-ids sg-0939c7eafc8d6a45f
 ```
 
 ## Connect to Linux instance using SSH
@@ -131,6 +131,8 @@ ssh -i my-key-pair.pem ec2-user@i-0123456789example \
 ## Connect to Windows instance using RDP
 
 Follow the instruction given [here](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connect-using-eice.html#eic-connect-using-rdp)
+
+**NOTE:** make sure port 3389 is allowed in `endpoint-sg` security group for windows instances.  
 
 ## Conclusion
 
